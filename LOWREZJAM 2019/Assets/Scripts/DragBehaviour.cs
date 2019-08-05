@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class DragBehaviour : MonoBehaviour
 {
-    float deltaX, deltaY;
-    Rigidbody2D rb;
-    bool moveAllowed = false;
+    [SerializeField]
+    private FloatReference DragSpeed;
+    [SerializeField]
+    private GameEvent ThrownToPlanet;
+    [SerializeField]
+    private GameEvent ThrownToTrash;
+    private float deltaX, deltaY;
+    private Rigidbody2D rb;
+    private Vector3 originalPosition;
+    private bool moveAllowed = false;
+    private bool touchingPlanet;
+    private bool touchingTrash;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        originalPosition = rb.position;
     }
 
     private void Update()
@@ -33,8 +43,8 @@ public class DragBehaviour : MonoBehaviour
                     }
                     break;
                 case TouchPhase.Moved:
-                    if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPosition) && moveAllowed)
-                        rb.MovePosition(new Vector2(touchPosition.x - deltaX, touchPosition.y - deltaY));
+                    if (moveAllowed)
+                        rb.position = Vector3.Lerp(transform.position, touchPosition, DragSpeed.Value * Time.deltaTime);
                     break;
                 case TouchPhase.Ended:
                     moveAllowed = false;
@@ -42,4 +52,71 @@ public class DragBehaviour : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag.Equals(Global.PlanetTag))
+        {
+            touchingPlanet = true;
+            Debug.Log("A planet");
+        }
+        else if (collision.tag.Equals(Global.TrashTag))
+        {
+            touchingTrash = true;
+            Debug.Log("A trash");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag.Equals(Global.PlanetTag))
+        {
+            touchingPlanet = false;
+            Debug.Log("Not a planet");
+        }
+        else if (collision.tag.Equals(Global.TrashTag))
+        {
+            touchingTrash = false;
+            Debug.Log("Not a trash");
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        Debug.Log("OnMouseDown");
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        moveAllowed = true;
+    }
+
+    private void OnMouseDrag()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (moveAllowed)
+            rb.position = Vector3.Lerp(transform.position, mousePosition, DragSpeed.Value * Time.deltaTime);
+    }
+
+    private void OnMouseUp()
+    {
+        Debug.Log("OnMouseUp");
+
+        moveAllowed = false;
+        if (touchingPlanet)
+        {
+            ThrownToPlanet.Raise();
+            GetComponent<SpriteRenderer>().color = Color.green;
+        }
+        else if (touchingTrash)
+        {
+            ThrownToTrash.Raise();
+            GetComponent<SpriteRenderer>().color = Color.red;
+        }
+        else
+        {
+            rb.position = originalPosition;
+            GetComponent<SpriteRenderer>().color = Color.white;
+
+        }
+    }
+
 }
