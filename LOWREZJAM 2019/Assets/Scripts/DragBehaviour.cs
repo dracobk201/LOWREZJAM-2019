@@ -10,7 +10,6 @@ public class DragBehaviour : MonoBehaviour
     private GameEvent ThrownToPlanet;
     [SerializeField]
     private GameEvent ThrownToTrash;
-    private float deltaX, deltaY;
     private Rigidbody2D rb;
     private Vector3 originalPosition;
     private bool moveAllowed = false;
@@ -35,12 +34,7 @@ public class DragBehaviour : MonoBehaviour
             {
                 case TouchPhase.Began:
                     if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPosition))
-                    {
-                        deltaX = touchPosition.x - transform.position.x;
-                        deltaX = touchPosition.y - transform.position.y;
-
                         moveAllowed = true;
-                    }
                     break;
                 case TouchPhase.Moved:
                     if (moveAllowed)
