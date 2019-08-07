@@ -32,7 +32,7 @@ public class GameplayBehaviour : MonoBehaviour
     private void TimeChecker()
     {
         float actualPercentage = (RemainingTime.Value * 100f) / TimeForWave.Value;
-        Debug.Log(actualPercentage + " - "+ targetPercentage);
+        //Debug.Log(actualPercentage + " - "+ targetPercentage);
         if (actualPercentage <= targetPercentage)
         {
             TimeToNewWave.Raise();
