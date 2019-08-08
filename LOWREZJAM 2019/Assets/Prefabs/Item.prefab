@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 1b3fe9f7189292f4495462b43572e346, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -121,7 +121,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.8, y: 0.8}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
@@ -166,12 +166,12 @@ MonoBehaviour:
   ThrownToTrash: {fileID: 11400000, guid: eacfd4d1fc12f154c95853c62651338f, type: 2}
   itemSprites:
   - {fileID: 21300000, guid: ced2777a230a1294c8c91e39d26511b4, type: 3}
-  - {fileID: 21300000, guid: c0c2af0041509b84e9a9ed8956ea3f83, type: 3}
+  - {fileID: 21300000, guid: 80e6169ba0880284882ba1990ab7a86b, type: 3}
   - {fileID: 21300000, guid: a26dcaabedff0874d83821e5e1dabcce, type: 3}
   - {fileID: 21300000, guid: 1b3fe9f7189292f4495462b43572e346, type: 3}
   - {fileID: 21300000, guid: af0d478df2e6fbc49a0589e7f5a96a49, type: 3}
   - {fileID: 21300000, guid: 02095a541d770e84c96089d531385da5, type: 3}
-  - {fileID: 21300000, guid: e465b23ff278cc04bbbfed9abf2bf08c, type: 3}
+  - {fileID: 21300000, guid: 731369497f1c43043ac29b0e23daa0d2, type: 3}
 --- !u!114 &6213860727998225158
 MonoBehaviour:
   m_ObjectHideFlags: 0

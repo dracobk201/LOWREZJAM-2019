@@ -14,13 +14,14 @@ public class GameplayBehaviour : MonoBehaviour
     [SerializeField]
     private FloatReference StepPercentage;
     [SerializeField]
+    private FloatReference TargetPercentage;
+    [SerializeField]
     private GameEvent TimeToNewWave;
-    private float targetPercentage;
 
     private void Start()
     {
         RemainingTime.Value = TimeForWave.Value;
-        targetPercentage = InitialPercentage.Value;
+        TargetPercentage.Value = InitialPercentage.Value;
     }
 
     private void Update()
@@ -33,10 +34,10 @@ public class GameplayBehaviour : MonoBehaviour
     {
         float actualPercentage = (RemainingTime.Value * 100f) / TimeForWave.Value;
         //Debug.Log(actualPercentage + " - "+ targetPercentage);
-        if (actualPercentage <= targetPercentage)
+        if (actualPercentage <= TargetPercentage.Value)
         {
             TimeToNewWave.Raise();
-            targetPercentage /= StepPercentage.Value;
+            TargetPercentage.Value /= StepPercentage.Value;
         }
     }
 }
