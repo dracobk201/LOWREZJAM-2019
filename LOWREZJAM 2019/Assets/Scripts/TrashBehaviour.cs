@@ -6,6 +6,8 @@ public class TrashBehaviour : MonoBehaviour
 {
     [SerializeField]
     private IntReference TrashPool;
+    [SerializeField]
+    private Sprite[] statusSprites;
 
     private void Start()
     {
@@ -18,16 +20,13 @@ public class TrashBehaviour : MonoBehaviour
         switch (TrashPool.Value)
         {
             case var expression when (TrashPool.Value >= 0 && TrashPool.Value < 5):
-                GetComponent<SpriteRenderer>().color = Color.green;
+                GetComponent<SpriteRenderer>().sprite = statusSprites[0];
                 break;
             case var expression when (TrashPool.Value >= 5 && TrashPool.Value < 8):
-                GetComponent<SpriteRenderer>().color = Color.yellow;
+                GetComponent<SpriteRenderer>().sprite = statusSprites[1];
                 break;
-            case var expression when (TrashPool.Value >= 8 && TrashPool.Value < 10):
-                GetComponent<SpriteRenderer>().color = Color.magenta;
-                break;
-            case 10:
-                GetComponent<SpriteRenderer>().color = Color.red;
+            case var expression when (TrashPool.Value >= 8 && TrashPool.Value <= 10):
+                GetComponent<SpriteRenderer>().sprite = statusSprites[2];
                 break;
         }
     }

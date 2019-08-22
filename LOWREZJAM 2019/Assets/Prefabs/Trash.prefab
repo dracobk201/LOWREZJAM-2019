@@ -136,6 +136,10 @@ MonoBehaviour:
     UseVariable: 1
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 9f0c1780dc6493e4fbf0d59166575325, type: 2}
+  statusSprites:
+  - {fileID: 21300000, guid: cb8b00f442f9d4342b6e9e24e5d91cfb, type: 3}
+  - {fileID: 21300000, guid: f2f69cb7415d9a7488dd486bc22313ef, type: 3}
+  - {fileID: 21300000, guid: 0699dbb354c2f8c4d93ee13d6fd90b91, type: 3}
 --- !u!114 &3100800718427271556
 MonoBehaviour:
   m_ObjectHideFlags: 0
