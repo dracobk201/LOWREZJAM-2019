@@ -17,27 +17,41 @@ public class GameplayBehaviour : MonoBehaviour
     private FloatReference TargetPercentage;
     [SerializeField]
     private GameEvent TimeToNewWave;
+    [SerializeField]
+    private GameEvent TimeOut;
+    private bool gameOver;
 
     private void Start()
     {
+        gameOver = false;
         RemainingTime.Value = TimeForWave.Value;
         TargetPercentage.Value = InitialPercentage.Value;
     }
 
     private void Update()
     {
-        RemainingTime.Value -= Time.deltaTime;
-        TimeChecker();
+        if (!gameOver)
+        {
+            RemainingTime.Value -= Time.deltaTime;
+            TimeChecker();
+        }
     }
 
     private void TimeChecker()
     {
         float actualPercentage = (RemainingTime.Value * 100f) / TimeForWave.Value;
         //Debug.Log(actualPercentage + " - "+ targetPercentage);
+        if (RemainingTime.Value <= 0)
+        {
+            TimeOut.Raise();
+            gameOver = true;
+            return;
+        }
         if (actualPercentage <= TargetPercentage.Value)
         {
             TimeToNewWave.Raise();
             TargetPercentage.Value /= StepPercentage.Value;
         }
     }
+
 }

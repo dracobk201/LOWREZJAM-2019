@@ -64,6 +64,7 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 15385705ff1567e40b9e5e14b3a097f4, type: 2}
   TimeToNewWave: {fileID: 11400000, guid: 7a7affb9f2b6fea478bc50a7b9d242eb, type: 2}
+  TimeOut: {fileID: 11400000, guid: a7d19a9bfc97f744eafabe374f037ac8, type: 2}
 --- !u!1 &2941613149808079791
 GameObject:
   m_ObjectHideFlags: 0

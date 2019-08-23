@@ -26,6 +26,7 @@ public class ItemBehaviour : MonoBehaviour
     private bool moveAllowed = false;
     private bool touchingPlanet;
     private bool touchingTrash;
+    private bool timeOut;
 
     private void Start()
     {
