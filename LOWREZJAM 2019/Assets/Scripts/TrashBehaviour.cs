@@ -7,11 +7,21 @@ public class TrashBehaviour : MonoBehaviour
     [SerializeField]
     private IntReference TrashPool;
     [SerializeField]
-    private Sprite[] statusSprites;
+    private IntReference TrashLowAmount;
+    [SerializeField]
+    private IntReference TrashMediumAmount;
+    [SerializeField]
+    private IntReference TrashHeavyAmount;
+    [SerializeField]
+    private Sprite TrashStatusGood;
+    [SerializeField]
+    private Sprite TrashStatusMedium;
+    [SerializeField]
+    private Sprite TrashStatusBad;
 
     private void Start()
     {
-        TrashPool.Value = 0;
+        TrashPool.Value = TrashMediumAmount.Value;
         ChangeTrashState();
     }
 
@@ -19,14 +29,14 @@ public class TrashBehaviour : MonoBehaviour
     {
         switch (TrashPool.Value)
         {
-            case var expression when (TrashPool.Value >= 0 && TrashPool.Value < 5):
-                GetComponent<SpriteRenderer>().sprite = statusSprites[0];
+            case var expression when (TrashPool.Value >= 0 && TrashPool.Value < TrashLowAmount.Value):
+                GetComponent<SpriteRenderer>().sprite = TrashStatusBad;
                 break;
-            case var expression when (TrashPool.Value >= 5 && TrashPool.Value < 8):
-                GetComponent<SpriteRenderer>().sprite = statusSprites[1];
+            case var expression when (TrashPool.Value >= TrashLowAmount.Value && TrashPool.Value < TrashMediumAmount.Value):
+                GetComponent<SpriteRenderer>().sprite = TrashStatusMedium;
                 break;
-            case var expression when (TrashPool.Value >= 8 && TrashPool.Value <= 10):
-                GetComponent<SpriteRenderer>().sprite = statusSprites[2];
+            case var expression when (TrashPool.Value >= TrashMediumAmount.Value && TrashPool.Value <= TrashHeavyAmount.Value):
+                GetComponent<SpriteRenderer>().sprite = TrashStatusBad;
                 break;
         }
     }

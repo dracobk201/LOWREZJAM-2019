@@ -136,6 +136,23 @@ MonoBehaviour:
     UseVariable: 1
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 8e95ad85f1d434b498c3a492b44d8e99, type: 2}
+  PlanetLowAmount:
+    UseVariable: 1
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: d54b4750199274942af62f1d3bfbcc3c, type: 2}
+  PlanetMediumAmount:
+    UseVariable: 1
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 6141e7399e5995045bbc9288325faf27, type: 2}
+  PlanetHeavyAmount:
+    UseVariable: 1
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: e6edf127438a8a846840f015fcd43ce5, type: 2}
+  PlanetStatusGood: {fileID: 21300000, guid: 670f60bf9409dc34ca2fad460e386d03, type: 3}
+  PlanetStatusMedium: {fileID: 21300000, guid: 670f60bf9409dc34ca2fad460e386d03, type: 3}
+  PlanetStatusBad: {fileID: 21300000, guid: 9e1748b2691af89498d854054a323a7a, type: 3}
+  PlanetStatusDestroyed: {fileID: 21300000, guid: 9e1748b2691af89498d854054a323a7a,
+    type: 3}
 --- !u!114 &4705312792479134600
 MonoBehaviour:
   m_ObjectHideFlags: 0

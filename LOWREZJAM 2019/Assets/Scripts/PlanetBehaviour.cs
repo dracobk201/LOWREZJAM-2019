@@ -6,10 +6,24 @@ public class PlanetBehaviour : MonoBehaviour
 {
     [SerializeField]
     private IntReference PlanetPool;
+    [SerializeField]
+    private IntReference PlanetLowAmount;
+    [SerializeField]
+    private IntReference PlanetMediumAmount;
+    [SerializeField]
+    private IntReference PlanetHeavyAmount;
+    [SerializeField]
+    private Sprite PlanetStatusGood;
+    [SerializeField]
+    private Sprite PlanetStatusMedium;
+    [SerializeField]
+    private Sprite PlanetStatusBad;
+    [SerializeField]
+    private Sprite PlanetStatusDestroyed;
 
     private void Start()
     {
-        PlanetPool.Value = 8;
+        PlanetPool.Value = PlanetMediumAmount.Value;
         ChangePlanetState();
     }
 
@@ -18,19 +32,18 @@ public class PlanetBehaviour : MonoBehaviour
         switch (PlanetPool.Value)
         {
             case var expression when (PlanetPool.Value < 0):
+                GetComponent<SpriteRenderer>().sprite = PlanetStatusDestroyed;
                 GetComponent<SpriteRenderer>().color = Color.black;
                 break;
-            case var expression when (PlanetPool.Value >= 0 && PlanetPool.Value < 5):
-                GetComponent<SpriteRenderer>().color = Color.red;
+            case var expression when (PlanetPool.Value > 0 && PlanetPool.Value < PlanetLowAmount.Value):
+                GetComponent<SpriteRenderer>().sprite = PlanetStatusBad;
                 break;
-            case var expression when(PlanetPool.Value >= 5 && PlanetPool.Value < 8):
-                GetComponent<SpriteRenderer>().color = Color.magenta;
-                break;
-            case var expression when (PlanetPool.Value >= 8 && PlanetPool.Value < 10):
+            case var expression when(PlanetPool.Value >= PlanetLowAmount.Value && PlanetPool.Value < PlanetMediumAmount.Value):
+                GetComponent<SpriteRenderer>().sprite = PlanetStatusMedium;
                 GetComponent<SpriteRenderer>().color = Color.yellow;
                 break;
-            case 10:
-                GetComponent<SpriteRenderer>().color = Color.green;
+            case var expression when (PlanetPool.Value >= PlanetMediumAmount.Value && PlanetPool.Value <= PlanetHeavyAmount.Value):
+                GetComponent<SpriteRenderer>().sprite = PlanetStatusGood;
                 break;
         }
     }
